@@ -13,7 +13,10 @@ const app=express();
 
 const io = new Server(httpServer, {
   cors: {
-    origin: '*',
+    origin: "http://localhost:5173",
+    methods: ["GET", "POST"],
+    allowedHeaders: ["my-custom-header"],
+    credentials: true
   }
 });
 let socketmap=new Map();
