@@ -9,17 +9,13 @@ const app=express();
 
 
  const httpServer = createServer();
-app.get("/",(req,res)=>{
-res.send({satiman:"sasa"});
-});
+
 
 const io = new Server(httpServer, {
   cors: {
-    origin: true,
-    credentials: true,
-  },
-  allowEIO3: true,
-});
+    origin: "http://http://localhost:5173/",
+    methods: ["GET", "POST"]
+}});
 let socketmap=new Map();
 let mapsocket=new Map();
 
