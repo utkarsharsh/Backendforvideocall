@@ -1,25 +1,28 @@
 import { createServer } from "http";
 import { Server } from "socket.io";
 import dotenv from 'dotenv'
-// import express from 'express'
+import express from 'express'
 // import path from "path";
 dotenv.config()
-// const app=express();
+const app=express();
 
 
 
  const httpServer = createServer();
-//  app.use(express.static(path.join(__dirname,"./client/dist")));
-
-// app.get('*',(req,res)=>{
-// res.sendFile(path.join(__dirname,'./client/dist/index.html'))
-// });
+app.get("/",(req,res)=>{
+res.send({satiman:"sasa"});
+});
 
 const io = new Server(httpServer, {
-  cors:true,
+  cors: {
+    origin: true,
+    credentials: true,
+  },
+  allowEIO3: true,
 });
 let socketmap=new Map();
 let mapsocket=new Map();
+
 io.on("connection", (socket) => {
  console.log(socket.id);
  socket.on("chat",({email,room})=>{
